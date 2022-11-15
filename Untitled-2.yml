@@ -1,0 +1,18 @@
+trigger: 
+- master
+
+pool: 
+   vmImage: ubuntu-latest
+
+jobs:
+- deployment: VMDeploy
+  displayName: Deploy to VM
+  environment: 
+    name: ContosoDeploy
+    resourceType: VirtualMachine
+    tags: windows,prod # only deploy to virtual machines with both windows and prod tags
+  strategy:
+    runOnce:
+      deploy:   
+          steps:
+          - script: echo "Hello world"
